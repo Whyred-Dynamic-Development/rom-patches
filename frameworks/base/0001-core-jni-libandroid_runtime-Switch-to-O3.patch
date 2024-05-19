@@ -1,0 +1,39 @@
+From 1a003fea374faf901ca851fc55303936a77bf8cd Mon Sep 17 00:00:00 2001
+From: Simao Gomes Viana <xdevs23@outlook.com>
+Date: Sat, 26 May 2018 10:58:21 +0200
+Subject: [PATCH] core/jni/libandroid_runtime: Switch to -O3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Change-Id: I5db0598b3bf9b353fffa6493a42da43d02aa287a
+Signed-off-by: Simão Gomes Viana <devel@superboring.dev>
+Signed-off-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
+---
+ core/jni/Android.bp | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/core/jni/Android.bp b/core/jni/Android.bp
+index 2a744e343ccd..1ba60ed4d5b1 100644
+--- a/core/jni/Android.bp
++++ b/core/jni/Android.bp
+@@ -31,6 +31,7 @@ cc_library_shared_for_libandroid_runtime {
+     name: "libandroid_runtime",
+     host_supported: true,
+     cflags: [
++        "-O3",
+         "-Wno-unused-parameter",
+         "-Wno-non-virtual-dtor",
+         "-Wno-maybe-uninitialized",
+@@ -51,7 +52,7 @@ cc_library_shared_for_libandroid_runtime {
+         "-Wunreachable-code",
+     ],
+ 
+-    cppflags: ["-Wno-conversion-null"],
++    cppflags: ["-Wno-conversion-null", "-O3"],
+ 
+     product_variables: {
+         eng: {
+-- 
+2.45.1
+

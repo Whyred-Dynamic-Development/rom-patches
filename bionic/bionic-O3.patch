@@ -1,0 +1,190 @@
+diff --git a/benchmarks/Android.bp b/benchmarks/Android.bp
+index 75e607cd1..ea13fd153 100644
+--- a/benchmarks/Android.bp
++++ b/benchmarks/Android.bp
+@@ -33,7 +33,7 @@ license {
+ cc_defaults {
+     name: "bionic-benchmarks-defaults",
+     cflags: [
+-        "-O2",
++        "-O3",
+         "-fno-builtin",
+         "-Wall",
+         "-Wextra",
+@@ -88,6 +88,7 @@ cc_defaults {
+         "-Wextra",
+         "-Werror",
+         "-Wunused",
++        "-O3",
+     ],
+ }
+ 
+diff --git a/libc/Android.bp b/libc/Android.bp
+index 809251660..d77401840 100644
+--- a/libc/Android.bp
++++ b/libc/Android.bp
+@@ -56,6 +56,7 @@ libc_common_flags = [
+     "-Wno-gcc-compat",
+     "-Wframe-larger-than=2048",
+     "-Wno-reorder-init-list",
++    "-O3",
+ 
+     // Try to catch typical 32-bit assumptions that break with 64-bit pointers.
+     "-Werror=pointer-to-int-cast",
+@@ -323,6 +324,7 @@ cc_library_static {
+         // fallback.
+         "-DWILDABBR=\"\"",
+         "-Dlint",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -435,6 +437,7 @@ cc_library_static {
+         "-Wno-sign-compare",
+         "-Wno-unused-parameter",
+         "-include freebsd-compat.h",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -454,6 +457,7 @@ cc_library_static {
+         "-Wno-sign-compare",
+         "-include freebsd-compat.h",
+         "-Wframe-larger-than=66000",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -508,6 +512,7 @@ cc_library_static {
+         "-Wno-unused-parameter",
+         "-DPOSIX_MISTAKE",
+         "-include netbsd-compat.h",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -634,6 +639,7 @@ cc_library_static {
+         "-Wno-sign-compare",
+         "-Wno-unused-parameter",
+         "-include openbsd-compat.h",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -658,6 +664,7 @@ cc_library_static {
+         "-include openbsd-compat.h",
+         "-Wno-sign-compare",
+         "-Wframe-larger-than=5000",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -736,6 +743,7 @@ cc_library_static {
+         "-Wno-sign-compare",
+         "-Wno-unused-parameter",
+         "-include openbsd-compat.h",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -784,6 +792,7 @@ cc_library_static {
+     cflags: [
+         "-Wno-sign-compare",
+         "-include openbsd-compat.h",
++        "-O3",
+     ],
+ 
+     local_include_dirs: [
+@@ -810,6 +819,7 @@ cc_library_static {
+     cflags: [
+         "-U_FORTIFY_SOURCE",
+         "-D__BIONIC_DECLARE_FORTIFY_HELPERS",
++        "-O3",
+     ],
+ 
+     arch: {
+@@ -1493,6 +1503,7 @@ cc_library_static {
+     cflags: [
+         "-fvisibility=hidden",
+         "-DLIBC_STATIC",
++        "-O3",
+     ],
+ 
+     whole_static_libs: [
+@@ -2247,6 +2258,7 @@ cc_defaults {
+         "-Wno-gcc-compat",
+         "-Wall",
+         "-Werror",
++        "-O3",
+     ],
+     sanitize: {
+         never: true,
+diff --git a/libdl/Android.bp b/libdl/Android.bp
+index 3bda8565c..a73cccc2b 100644
+--- a/libdl/Android.bp
++++ b/libdl/Android.bp
+@@ -34,6 +34,7 @@ cc_library_static {
+         "-Wextra",
+         "-Wunused",
+         "-Werror",
++        "-O3",
+     ],
+ 
+     // For private/CFIShadow.h.
+@@ -198,6 +199,7 @@ cc_library {
+         "-Wextra",
+         "-Wunused",
+         "-Werror",
++        "-O3",
+     ],
+ 
+     stl: "none",
+diff --git a/libm/Android.bp b/libm/Android.bp
+index a89885f27..207ab8464 100644
+--- a/libm/Android.bp
++++ b/libm/Android.bp
+@@ -416,6 +416,7 @@ cc_library {
+         "-Wno-unknown-pragmas",
+         "-Wno-unused-const-variable",
+         "-Wno-unused-variable",
++        "-O3",
+     ],
+ 
+     ldflags: [
+diff --git a/linker/Android.bp b/linker/Android.bp
+index 8633faffb..3488936bc 100644
+--- a/linker/Android.bp
++++ b/linker/Android.bp
+@@ -43,6 +43,7 @@ cc_object {
+         "-Wextra",
+         "-Wno-unused",
+         "-Werror",
++        "-O3",
+     ],
+ 
+     srcs: [
+@@ -93,6 +94,7 @@ cc_defaults {
+         "-Wextra",
+         "-Wunused",
+         "-Werror",
++        "-O3",
+     ],
+ 
+     // TODO: split out the asflags.
+@@ -313,6 +315,8 @@ cc_defaults {
+         "-Wl,-soname,ld-android.so",
+     ],
+ 
++    cflags: ["-O3"],
++
+     // we are going to link libc++_static manually because
+     // when stl is not set to "none" build system adds libdl
+     // to the list of static libraries which needs to be
+@@ -476,6 +480,7 @@ cc_library {
+         "-Wextra",
+         "-Wunused",
+         "-Werror",
++        "-O3",
+     ],
+     stl: "none",
+ 

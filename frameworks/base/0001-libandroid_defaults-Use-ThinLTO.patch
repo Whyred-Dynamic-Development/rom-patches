@@ -1,0 +1,30 @@
+From 4cc39e67c34ff6170adffc41d90c6bdceb67b8eb Mon Sep 17 00:00:00 2001
+From: John Galt <johngaltfirstrun@gmail.com>
+Date: Thu, 6 Oct 2022 11:59:50 -0400
+Subject: [PATCH] libandroid_defaults: Use ThinLTO
+
+In global LTO builds, this is significantly responsible for improved app
+launch times.
+
+Change-Id: I1c7cfb44548b4d47a0347e328c0ab730380580a4
+---
+ native/android/Android.bp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/native/android/Android.bp b/native/android/Android.bp
+index 7f3792d06795..60fcb55d5473 100644
+--- a/native/android/Android.bp
++++ b/native/android/Android.bp
+@@ -42,6 +42,9 @@ cc_defaults {
+         "-Wunused",
+         "-Wunreachable-code",
+     ],
++    lto: {
++        thin: true,
++    },
+ }
+ 
+ cc_library_shared {
+-- 
+2.45.1
+
